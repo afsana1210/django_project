@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Signup
+from .forms import SignupModelForm
 
 # Create your views here.
 def signup_view(request):
@@ -14,6 +16,6 @@ def signup_view(request):
         form.save(commit=True)
        else:
         print(form.errors)
-     template_name="polls/forms.html"
+     template_name="ECP/forms.html"
      context={"form":form}
      return render(request,template_name,context)

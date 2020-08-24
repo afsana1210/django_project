@@ -1,0 +1,39 @@
+{% extends "ECP/base.html" %} {% block title_content %}signup{% endblock %}
+
+
+{% block content %}
+
+<!-- {% if title %}
+  <h1>{{title}}</h1>
+{% endif %} -->
+
+
+<div class="form-group">
+    <form class="form-signin" action="." method="post">
+      {% csrf_token %}
+      <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+     <div class="form-group">
+        <div class="row">
+          <div class="col-8 mx-auto">
+           {% for field in form %}
+            <div class="form-group">
+              <div class="row">
+                <div class="col-8 mx-auto">
+                 {{field}}
+                </div>
+              </div>
+            </div>
+           {% endfor %}
+           
+          </div>
+        </div>
+     </div>
+     <div class="form-group">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Sign Up
+        </button>
+          <p class="mt-5 mb-3 text-muted">@ </p>
+     </div>
+    </form>
+</div>
+{% endblock %}
