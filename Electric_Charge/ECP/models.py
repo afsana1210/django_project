@@ -15,10 +15,10 @@ from django.utils import timezone
 
 class Signup(models.Model):
     user_choices=(
-        ('consumer','CONSUMER'),
-         ('provider','PROVIDER'),
+        ('2','CONSUMER'),
+         ('1','PROVIDER'),
          )
-    user=models.CharField(max_length=240,choices=user_choices,default='provider')
+    user=models.CharField(max_length=240,choices=user_choices,default='1')
    # slug=models.TextField(default="this-is-new-slug")
     first_name=models.CharField(max_length=250)
     second_name=models.CharField(max_length=250)
