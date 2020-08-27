@@ -19,3 +19,11 @@ def signup_view(request):
      template_name="ECP/forms.html"
      context={"form":form}
      return render(request,template_name,context)
+
+def list_view(request):
+    # email=self.cleaned_data.get('email')
+    qs=Signup.objects.get(email=request.POST['email'])
+    print("query :",qs)
+    template_name='ECP/list.html'
+    context={'object_list':qs}
+    return render(request,template_name,context)

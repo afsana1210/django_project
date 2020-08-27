@@ -1,6 +1,6 @@
 from django.urls import path
 from ECP import views
-from .views import signup_view
+from .views import signup_view,list_view
 
 urlpatterns=[
     # path('',views.index,name='index'),
@@ -8,4 +8,5 @@ urlpatterns=[
 
 
     path('signup/',views.signup_view ,name='signup'),
+    path('list/',views.list_view ,name='list'),
 ]
