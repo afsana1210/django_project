@@ -17,7 +17,7 @@
           {% if form.email.errors %}
             <ul>
                {% for error in form.email.errors %}
-                 <li><strong>{{ error|escape }}</strong></li>
+                 <li style="color:red"><strong>{{ error|escape }}</strong></li>
                {% endfor %}
             </ul>
           {% endif %}

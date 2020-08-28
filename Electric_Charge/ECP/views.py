@@ -1,6 +1,8 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from .models import Signup
 from .forms import SignupModelForm
+from django.contrib import messages
+
 
 # Create your views here.
 def signup_view(request):
@@ -14,6 +16,8 @@ def signup_view(request):
        if form.is_valid():
         print("form.cleaned_data")
         form.save(commit=True)
+        # return HttpResponseRedirect("signin_work")
+        return render(request,"ECP/signin.html")
        else:
         print(form.errors)
      template_name="ECP/forms.html"
@@ -65,6 +69,7 @@ def signin_view_work(request):
         for objects in qs:
             email=objects.email
             password=objects.password
+            user=objects.user
             print("email is :" ,email)
             print("password is:",password)
             print("data :",data)
@@ -72,7 +77,13 @@ def signin_view_work(request):
             if email==data and password==data1:
               print("email :",email)
               print("password :",password) 
-              return render(request,"ECP/list.html")
+              if user=='1':
+               return render(request,"ECP/provider.html")
+              else:
+                 return render(request,"ECP/consumer.html")
+            else:
+                messages.error(request, "Invalid Email or Password")
+                return render(request,"ECP/signin.html")
             # else:
                 # return HttpResponse("please check your email and password.you're email and password didn't match ","ECP/signin.html")
         print("email of signin:",email)
