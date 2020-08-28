@@ -1,9 +1,12 @@
 {% extends "ECP/base.html" %}
 
 {% block content %}
-<div class="row">
- {% for object in objects_list%}
+<div class="col">
+    <h1>hello</h1><br>
+ {% for object in object_list%}
+   <h1>{{object.user}}</h1>
    <h1>{{object.email}}</h1>
+   <h1>{{object.password}}</h1>
  {% endfor %}
 </div>
 {% endblock %}
