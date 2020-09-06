@@ -65,11 +65,27 @@ def signin_view_work(request):
     if request.method=="POST":
         data=request.POST.get("email_id")
         data1=request.POST.get("password")
-        qs=Signup.objects.all()
-        for objects in qs:
-            email=objects.email
-            password=objects.password
-            user=objects.user
+        for e in Signup.objects.all():
+            email=e.email
+            password=e.password
+            user=e.user
+            print("new : ",email)
+            if email==data and password==data1:
+                if user=='1':
+                  return render(request,"ECP/provider.html")
+                else:
+                    return render(request,"ECP/consumer.html")
+            else:
+                messages.error(request, "Invalid Email or Password")
+                return render(request,"ECP/signin.html")
+        # qs=Signup.objects.all()
+        # print("query set:",qs)
+
+        for e in Signup.objects.all():
+            print(e.email)
+            email=e.email
+            password=e.password
+            user=e.user
             print("email is :" ,email)
             print("password is:",password)
             print("data :",data)
@@ -77,10 +93,10 @@ def signin_view_work(request):
             if email==data and password==data1:
               print("email :",email)
               print("password :",password) 
-              if user=='1':
-               return render(request,"ECP/provider.html")
-              else:
-                 return render(request,"ECP/consumer.html")
+            #   if user=='1':
+            #    return render(request,"ECP/provider.html")
+            #   else:
+            #      return render(request,"ECP/consumer.html")
             else:
                 messages.error(request, "Invalid Email or Password")
                 return render(request,"ECP/signin.html")
