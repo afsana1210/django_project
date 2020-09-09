@@ -32,7 +32,12 @@
     Sign in
   </button>
   <p><a href="{%url 'signup'%}">New user Register</a></p>
-
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
   <p class="mt-5 mb-3 text-muted">©</p>
 </form>
 {%endblock%}

@@ -8,16 +8,11 @@ from django.contrib import messages
 def signup_view(request):
      form=SignupModelForm()
      if request.method=='POST':
-       print('hello')
        form=SignupModelForm(request.POST)
-       print(request.POST)
-       print("request line",form)
-
        if form.is_valid():
-        print("form.cleaned_data")
         form.save(commit=True)
-        # return HttpResponseRedirect("signin_work")
-        return render(request,"ECP/signin.html")
+        context={"message":"User registered successfully"}
+        return render(request,"ECP/signin.html",context)
        else:
         print(form.errors)
      template_name="ECP/forms.html"
@@ -66,44 +61,14 @@ def signin_view_work(request):
         data=request.POST.get("email_id")
         data1=request.POST.get("password")
         for e in Signup.objects.all():
-            email=e.email
-            password=e.password
-            user=e.user
-            print("new : ",email)
-            if email==data and password==data1:
-                if user=='1':
-                  return render(request,"ECP/provider.html")
+            if e.email==data and  e.password==data1:
+                if e.user=='1':
+                    return render(request,"ECP/provider.html")
                 else:
                     return render(request,"ECP/consumer.html")
-            else:
-                messages.error(request, "Invalid Email or Password")
-                return render(request,"ECP/signin.html")
-        # qs=Signup.objects.all()
-        # print("query set:",qs)
-
-        for e in Signup.objects.all():
-            print(e.email)
-            email=e.email
-            password=e.password
-            user=e.user
-            print("email is :" ,email)
-            print("password is:",password)
-            print("data :",data)
-            print("data 1 is :",data1)
-            if email==data and password==data1:
-              print("email :",email)
-              print("password :",password) 
-            #   if user=='1':
-            #    return render(request,"ECP/provider.html")
-            #   else:
-            #      return render(request,"ECP/consumer.html")
-            else:
-                messages.error(request, "Invalid Email or Password")
-                return render(request,"ECP/signin.html")
-            # else:
-                # return HttpResponse("please check your email and password.you're email and password didn't match ","ECP/signin.html")
-        print("email of signin:",email)
-        print("password of signin :" , password)
-       
+        else:
+            messages.error(request, "Invalid Email or Password")
+            return render(request,"ECP/signin.html")
     template_name='ECP/signin.html'
     return render(request,template_name)
+       
